@@ -1,12 +1,6 @@
 venv/
-env/
 __pycache__/
 *.pyc
-*.pyo
-.git/
-.gitignore
 db.sqlite3
-staticfiles/
-media/
+.git/
 .env
-*.log
