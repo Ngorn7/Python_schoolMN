@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Teachers{% endblock %}
+{% block page_title %}Teachers{% endblock %}
+{% block content %}
+<div class="card">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <form class="form-inline" method="get" action="{% url 'app_teacher:search_teacher' %}">
+      <input type="text" name="q" class="form-control mr-2" placeholder="Search teachers..." value="{{ query|default:'' }}">
+      <button type="submit" class="btn btn-secondary">Search</button>
+    </form>
+    <a href="{% url 'app_teacher:create_teacher' %}" class="btn btn-primary"><i class="fas fa-plus"></i> Add Teacher</a>
+  </div>
+  <div class="card-body p-0">
+    <table class="table table-striped mb-0">
+      <thead>
+        <tr>
+          <th>ID</th><th>First Name</th><th>Last Name</th><th>Gender</th><th>DOB</th><th>Address</th><th>Salary</th><th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for teacher in teachers %}
+        <tr>
+          <td>{{ teacher.id }}</td>
+          <td>{{ teacher.first_name }}</td>
+          <td>{{ teacher.last_name }}</td>
+          <td>{{ teacher.get_gender_display }}</td>
+          <td>{{ teacher.dob }}</td>
+          <td>{{ teacher.address }}</td>
+          <td>{{ teacher.salary }}</td>
+          <td>
+            <a href="{% url 'app_teacher:update_teacher' teacher.id %}" class="btn btn-sm btn-info">Edit</a>
+            <a href="{% url 'app_teacher:delete_teacher' teacher.id %}" class="btn btn-sm btn-danger" onclick="return confirm('Delete this teacher?');">Delete</a>
+          </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="8" class="text-center">No teachers found.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

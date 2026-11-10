@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Subjects{% endblock %}
+{% block page_title %}Subjects{% endblock %}
+{% block content %}
+<div class="card">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <form class="form-inline" method="get" action="{% url 'app_subject:search_subject' %}">
+      <input type="text" name="q" class="form-control mr-2" placeholder="Search subjects..." value="{{ query|default:'' }}">
+      <button type="submit" class="btn btn-secondary">Search</button>
+    </form>
+    <a href="{% url 'app_subject:create_subject' %}" class="btn btn-primary"><i class="fas fa-plus"></i> Add Subject</a>
+  </div>
+  <div class="card-body p-0">
+    <table class="table table-striped mb-0">
+      <thead>
+        <tr><th>ID</th><th>Subject Name</th><th>Actions</th></tr>
+      </thead>
+      <tbody>
+        {% for subject in subjects %}
+        <tr>
+          <td>{{ subject.id }}</td>
+          <td>{{ subject.subject_name }}</td>
+          <td>
+            <a href="{% url 'app_subject:update_subject' subject.id %}" class="btn btn-sm btn-info">Edit</a>
+            <a href="{% url 'app_subject:delete_subject' subject.id %}" class="btn btn-sm btn-danger" onclick="return confirm('Delete this subject?');">Delete</a>
+          </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="3" class="text-center">No subjects found.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

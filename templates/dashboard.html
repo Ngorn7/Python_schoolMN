@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block page_title %}Dashboard{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-lg-4 col-6">
+        <div class="small-box bg-info">
+            <div class="inner">
+                <h3>{{ student_count }}</h3>
+                <p>Students</p>
+            </div>
+            <div class="icon"><i class="fas fa-user-graduate"></i></div>
+            <a href="{% url 'student_list' %}" class="small-box-footer">View <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <div class="col-lg-4 col-6">
+        <div class="small-box bg-success">
+            <div class="inner">
+                <h3>{{ subject_count }}</h3>
+                <p>Subjects</p>
+            </div>
+            <div class="icon"><i class="fas fa-book"></i></div>
+            <a href="{% url 'subject_list' %}" class="small-box-footer">View <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <div class="col-lg-4 col-6">
+        <div class="small-box bg-warning">
+            <div class="inner">
+                <h3>{{ teacher_count }}</h3>
+                <p>Teachers</p>
+            </div>
+            <div class="icon"><i class="fas fa-chalkboard-teacher"></i></div>
+            <a href="{% url 'teacher_list' %}" class="small-box-footer">View <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+</div>
+{% endblock %}

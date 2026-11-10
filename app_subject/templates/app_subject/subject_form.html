@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}{% if subject %}Edit{% else %}Add{% endif %} Subject{% endblock %}
+{% block page_title %}{% if subject %}Edit{% else %}Add{% endif %} Subject{% endblock %}
+{% block content %}
+<div class="card">
+  <div class="card-body">
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <label>Subject Name</label>
+        <input type="text" name="subject_name" class="form-control" value="{{ subject.subject_name|default:'' }}" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Save</button>
+      <a href="{% url 'app_subject:show_subject' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+  </div>
+</div>
+{% endblock %}
